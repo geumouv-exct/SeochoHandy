@@ -220,7 +220,7 @@ function RequestCard({
 }
 
 export function SeochoApp({ connectedMode = false, voiceConfigured = false, agentLabel = "" }: { connectedMode?: boolean; voiceConfigured?: boolean; agentLabel?: string }) {
-  const pathname = usePathname();
+  const pathname = (usePathname() ?? "/").replace(/\/+$/, "") || "/";
   const [store, setStore] = useState<DemoStore>(() => createSeedStore());
   const [requestDraft, setRequestDraft] = useState<HelpRequestDraft>(EMPTY_REQUEST_DRAFT);
   const requestDraftRef = useRef<HelpRequestDraft>(EMPTY_REQUEST_DRAFT);
