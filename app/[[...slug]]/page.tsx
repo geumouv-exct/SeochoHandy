@@ -20,5 +20,8 @@ export function generateStaticParams() {
 }
 
 export default function Page() {
-  return <ElevenLabsProvider><SeochoApp connectedMode={false} voiceConfigured={false} agentLabel="" /></ElevenLabsProvider>;
+  const voiceConfigured = Boolean(process.env.ELEVENLABS_AGENT_ID && process.env.ELEVENLABS_API_KEY);
+  const agentLabel = process.env.ELEVENLABS_AGENT_LABEL ?? "";
+
+  return <ElevenLabsProvider><SeochoApp connectedMode={false} voiceConfigured={voiceConfigured} agentLabel={agentLabel} /></ElevenLabsProvider>;
 }
