@@ -16,7 +16,7 @@ function json(response: ServerResponse, status: number, payload: Record<string, 
   response.end(JSON.stringify(payload));
 }
 
-export default async function handler(request: IncomingMessage, response: ServerResponse) {
+module.exports = async function handler(request: IncomingMessage, response: ServerResponse) {
   if (request.method !== "POST") {
     response.setHeader("Allow", "POST");
     return json(response, 405, { error: "POST 요청만 사용할 수 있어요." });
